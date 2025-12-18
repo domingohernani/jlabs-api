@@ -1,0 +1,27 @@
+import { MongoClient, ServerApiVersion } from "mongodb";
+
+const client = new MongoClient(process.env.MONGO_URI, {
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    },
+});
+
+let dbInstance = null;
+
+const connectDB = async () => {
+    if (!dbInstance) {
+        try {
+            await client.connect();
+            dbInstance = client.db(process.env.DB_NAME);
+            console.log(`Database connected`);
+        } catch (error) {
+            console.error("Database connection error:", error);
+            throw error;
+        }
+    }
+    return dbInstance;
+};
+
+export default connectDB;
