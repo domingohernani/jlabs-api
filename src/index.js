@@ -3,6 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 
 import authRoutes from "./routes/authRoute.js"
+import geolocationRoute from "./routes/geolocationRoute.js"
 
 const app = express();
 
@@ -18,6 +19,8 @@ app.use(
 );
 
 app.use("/api/", authRoutes)
+
+app.use("/api/geolocations", geolocationRoute)
 
 // simple route
 app.get("/", (req, res) => {

@@ -6,11 +6,13 @@ import User from "../model/User.js";
 const privateKey = process.env.PRIVATE_KEY;
 const publicKey = process.env.PUBLIC_KEY;
 
-const ACCESS_TOKEN_EXPIRATION = "15m";
+// I was not able to implement the refresh token due to time constraints,
+// so I increased the expiration of the access token instead..
+const ACCESS_TOKEN_EXPIRATION = "3hr";
 const REFRESH_TOKEN_EXPIRATION = "30d";
 
-const ACCESS_TOKEN_EXPIRATION_MS = 15 * 60 * 1000;  
-const REFRESH_TOKEN_EXPIRATION_MS = 30 * 24 * 60 * 60 * 1000;  
+const ACCESS_TOKEN_EXPIRATION_MS = 3 * 60 * 60 * 1000;
+const REFRESH_TOKEN_EXPIRATION_MS = 30 * 24 * 60 * 60 * 1000;
 
 export const login = async (req, res) => {
     const { email, password } = req.body;
